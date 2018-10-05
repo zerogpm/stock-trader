@@ -13,12 +13,15 @@
                       type="number"
                       class="form-control"
                       placeholder="Quantity"
+                      v-model.number="quantity"
                     >
                 </div>
 
                 <div class="pull-right">
                     <button
                       class="btn btn-success"
+                      @click="buyStock"
+                      :disabled="quantity <= 0 || !Number.isInteger(quantity)"
                     >
                         Buy
                     </button>
@@ -30,7 +33,23 @@
 
 <script>
   export default {
-    props: ['option']
+    props: ['option'],
+    data () {
+      return {
+        quantity: 0
+      }
+    },
+    methods: {
+      buyStock () {
+        const order = {
+          stockId: this.option.id,
+          stockPrice: this.option.price,
+          quantity: this.quantity
+        }
+        console.log(order)
+        this.quantity = 0
+      }
+    }
   }
 </script>
 
