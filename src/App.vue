@@ -11,12 +11,18 @@
 
 <script>
   import Header from './components/Header'
+  import { mapActions } from 'vuex'
   export default {
     components: {
       appHeader: Header
     },
+    methods: {
+      ...mapActions({
+        getStocks: 'loadStocks'
+      })
+    },
     created() {
-      this.$store.dispatch('loadStocks')
+      this.getStocks()
     }
   }
 </script>

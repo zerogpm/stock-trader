@@ -7,17 +7,15 @@
 
 <script>
   import Stock from './Stock'
+  import { mapGetters } from 'vuex'
   export default {
     components: {
       appStock: Stock
     },
     computed: {
-      stockOptions () {
-        return this.$store.getters.stocks
-      }
-    },
-    mounted() {
-      console.log(this.$store.getters.stocks)
+      ...mapGetters({
+        stockOptions : 'stocks'
+      })
     }
   }
 </script>
