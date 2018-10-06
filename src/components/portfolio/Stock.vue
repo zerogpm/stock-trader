@@ -51,6 +51,7 @@
           quantity: this.quantity
         }
         this.sellingStock(order)
+        this.quantity = 0
       }
     }
   }
