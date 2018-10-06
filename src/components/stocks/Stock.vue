@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     props: ['option'],
     data () {
@@ -40,13 +41,16 @@
       }
     },
     methods: {
+      ...mapActions({
+        buyPersonalStock: 'buyStock'
+      }),
       buyStock () {
         const order = {
           stockId: this.option.id,
           stockPrice: this.option.price,
           quantity: this.quantity
         }
-        console.log(order)
+        this.buyPersonalStock(order)
         this.quantity = 0
       }
     }
